@@ -3,26 +3,57 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cloud Kitchen · 3D Walkthrough</title>
+  <title>Aakar · Cloud Kitchen 3D Walkthrough</title>
 </head>
 <body>
-  <header><b>Cloud Kitchen</b><span>4,000 sq ft · 100′ × 40′</span></header>
-  <div id="legend">
-    <i style="background:#e0483e"></i>Non-Veg
-    <i style="background:#4fb477"></i>Veg
-    <i style="background:#f7c948"></i>Jain
+  <div id="loader">
+    <div class="logo big">A</div>
+    <h1>Aakar</h1>
+    <p>Designing your cloud kitchen…</p>
+    <div class="bar"><i></i></div>
   </div>
-  <section id="panel">
-    <div><span id="count"></span></div>
-    <h2 id="title"></h2>
-    <p id="text"></p>
-    <nav>
-      <button id="prev">←</button>
-      <button id="auto">▶ Auto</button>
-      <button id="next">→</button>
-      <button id="rec">● Rec</button>
+
+  <header>
+    <div class="brand">
+      <span class="logo">A</span>
+      <div><b>Aakar</b></div>
+    </div>
+    <nav id="tabs">
+      <button data-tab="tour">Walkthrough</button>
+      <button data-tab="zones">Zones</button>
+      <button data-tab="capture">Capture</button>
     </nav>
+    <div id="legend">
+      <span><i style="background:#e8736a"></i>Non-Veg</span>
+      <span><i style="background:#6cc08b"></i>Veg</span>
+      <span><i style="background:#f5d56a"></i>Jain</span>
+    </div>
+  </header>
+
+  <section id="win" hidden>
+    <div class="win-head"><span id="win-title"></span><button id="win-x">×</button></div>
+    <div class="win-body">
+      <div class="tab" id="tab-tour" hidden>
+        <small id="count"></small>
+        <h3 id="title"></h3>
+        <p id="text"></p>
+        <div class="row">
+          <button class="btn" id="prev">←</button>
+          <button class="btn" id="auto">▶ Auto</button>
+          <button class="btn" id="next">→</button>
+        </div>
+        <button class="btn ghost" id="rec">● Record walkthrough</button>
+      </div>
+      <div class="tab" id="tab-zones" hidden><ul id="zone-list"></ul></div>
+      <div class="tab" id="tab-capture" hidden>
+        <ul id="view-list"></ul>
+        <button class="btn" id="shot">📷 Save PNG</button>
+      </div>
+    </div>
   </section>
+
+  <footer>© Team Aakar · Cloud Kitchen Interior Design</footer>
+  <footer class="hint">Drag to orbit · Scroll to zoom</footer>
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>

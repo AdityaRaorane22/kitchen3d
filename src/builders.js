@@ -34,7 +34,6 @@ const PROPS = {
       if (i % 2 === 0) c(0.95, 1.2, M.steel, x, 3.15, Z(6.5));         // pot
     }
     b(z.w - 6, 0.8, 5, M.hood, cx, 7.5, Z(5));                         // exhaust hood
-    c(0.9, 6, M.steel, cx, 8.3, Z(5));                                 // duct
     b(z.w - 6, 3, 3, M.steel, cx, 0, Z(12));                           // prep island
     b(z.w - 6, 0.15, 3.1, z.color, cx, 3, Z(12));                      // colour-coded top
     b(z.w - 6, 0.05, 0.6, M.dark, cx, 0, Z(9));                        // trench drain
@@ -130,7 +129,7 @@ const PROPS = {
   me: (b, c, z, Z) => {
     b(5, 7, 2, E(0x56606b), z.w / 2, 0, Z(3));
     b(5, 0.5, 2.05, 0xf7c948, z.w / 2, 3, Z(3));
-    c(1.3, 12, M.steel, z.w / 2, 0, Z(10));                            // exhaust duct
+    c(1.3, 8, M.steel, z.w / 2, 0, Z(10));                            // exhaust duct
   },
 };
 
@@ -151,20 +150,23 @@ export function buildZone(z, parent) {
   g.add(props);
   PROPS[z.kind]((...a) => box(props, ...a), (...a) => cyl(props, ...a), z, Z, s);
 
-  const hw = (a, b2, zz, cap) => {
-    box(g, b2 - a, WALL, T, M.wall, (a + b2) / 2, 0, zz);
-    if (cap) box(g, b2 - a, 0.3, T + 0.1, E(z.accent ?? z.color), (a + b2) / 2, WALL, zz);
+    const wall = (w, d, x, zz, cap) => {
+    box(g, w, 1.2, d, M.wall, x, 0, zz);                              // solid base
+    box(g, w, 3, d, M.glass, x, 1.2, zz);                             // frosted glass above
+    if (cap) box(g, w, 0.25, d + 0.1, E(z.accent ?? z.color), x, 4.2, zz); // colour cap
   };
+  const hw = (a, b2, zz, cap) => wall(b2 - a, T, (a + b2) / 2, zz, cap);
   hw(0, z.w / 2 - 2, side, true);
   hw(z.w / 2 + 2, z.w, side, true);
   hw(0, z.w, outer);
-  if (z.open !== 'left') box(g, T, WALL, z.d, M.wall, 0, 0, z.d / 2);
-  if (z.x + z.w === W && z.open !== 'right') box(g, T, WALL, z.d, M.wall, z.w, 0, z.d / 2);
+  if (z.open !== 'left') wall(T, z.d, 0, z.d / 2);
+  if (z.x + z.w === W && z.open !== 'right') wall(T, z.d, z.w, z.d / 2);
 
   const el = document.createElement('div');
   el.className = 'tag';
-  el.innerHTML = `${z.label}<small>${z.sub ? z.sub + ' · ' : ''}${z.w * z.d} sq ft</small>`;
+  el.textContent = z.short;
   const label = new CSS2DObject(el);
-  label.position.set(z.w / 2, 10, z.d / 2);
+  label.position.set(z.w / 2, 8, z.d / 2);
   g.add(label);
+  return g;
 }

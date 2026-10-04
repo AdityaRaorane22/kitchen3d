@@ -1,8 +1,7 @@
 export const W = 100, D = 40;
 
 export const C = {
-  bg: 0xf4efe8, plinth: 0xd8cfc0, corridor: 0xfaf6ee, wall: 0xffffff,
-  steel: 0xcfd6dc, dark: 0x3b3f46,
+  corridor: 0xfdfaf4, steel: 0xcfd6dc, dark: 0x3b3f46,
 };
 
 // x, z, w, d in feet. Back row z=0..18, corridor 18..22, front row z=22..40
@@ -10,20 +9,20 @@ const T = { z: 0, d: 18 }, B = { z: 22, d: 18 };
 
 export const ZONES = [
   // back row
-  { id: 'gas',    label: 'Gas Stock Room',        x: 0,  w: 10, ...T, color: 0xf6a35c, kind: 'gas' },
-  { id: 'staff',  label: 'Staff Lockers & Restrooms', x: 10, w: 12, ...T, color: 0xc3b5ea, kind: 'staff' },
-  { id: 'nonveg', label: 'Non-Veg Kitchen',       x: 22, w: 20, ...T, color: 0xe0483e, kind: 'kitchen', sub: 'Red coded' },
-  { id: 'veg',    label: 'Veg Kitchen',           x: 42, w: 18, ...T, color: 0x4fb477, kind: 'kitchen', sub: 'Green coded' },
-  { id: 'jain',   label: 'Jain Kitchen',          x: 60, w: 18, ...T, color: 0xf7c948, kind: 'kitchen', sub: 'Yellow · no root veg' },
-  { id: 'pack',   label: 'Pickup & Packaging',    x: 78, w: 22, ...T, color: 0x2ec4b6, kind: 'pack', open: 'right' },
+  { id: 'gas',    label: 'Gas Stock Room',         short: 'Gas Room',   x: 0,  w: 10, ...T, color: 0xf7b980, kind: 'gas' },
+  { id: 'staff',  label: 'Staff Lockers & Restrooms', short: 'Staff',   x: 10, w: 12, ...T, color: 0xcfc4ee, kind: 'staff' },
+  { id: 'nonveg', label: 'Non-Veg Kitchen',        short: 'Non-Veg',    x: 22, w: 20, ...T, color: 0xe8736a, kind: 'kitchen' },
+  { id: 'veg',    label: 'Veg Kitchen',            short: 'Veg',        x: 42, w: 18, ...T, color: 0x6cc08b, kind: 'kitchen' },
+  { id: 'jain',   label: 'Jain Kitchen',           short: 'Jain',       x: 60, w: 18, ...T, color: 0xf5d56a, kind: 'kitchen' },
+  { id: 'pack',   label: 'Pickup & Packaging',     short: 'Pickup',     x: 78, w: 22, ...T, color: 0x62cfc3, kind: 'pack', open: 'right' },
   // front row
-  { id: 'dock',   label: 'Loading Dock',          x: 0,  w: 12, ...B, color: 0xa9b7c6, kind: 'dock', open: 'left' },
-  { id: 'waste',  label: 'Waste Management',      x: 12, w: 8,  ...B, color: 0xa8b89c, kind: 'waste', sub: 'Wet · Dry · Rec' },
-  { id: 'dry',    label: 'Warm Dry Storage',      x: 20, w: 12, ...B, color: 0xead2ae, kind: 'dry' },
-  { id: 'coldv',  label: 'Cold Storage · Veg',    x: 32, w: 10, ...B, color: 0xcdeedd, accent: 0x4fb477, kind: 'cold', sub: '+2 to +4 °C' },
-  { id: 'coldn',  label: 'Cold Storage · Non-Veg',x: 42, w: 10, ...B, color: 0xf7cfc4, accent: 0xe0483e, kind: 'cold', sub: '−18 °C' },
-  { id: 'tandoor',label: 'Central Tandoor',       x: 52, w: 12, ...B, color: 0xe0903f, kind: 'tandoor', sub: 'High-CFM canopy' },
-  { id: 'elec',   label: 'Electrical Appliances', x: 64, w: 14, ...B, color: 0xaebdcc, kind: 'elec' },
-  { id: 'bake',   label: 'Baking & Pastry',       x: 78, w: 14, ...B, color: 0xf4b393, kind: 'bake', sub: '22 °C' },
-  { id: 'me',     label: 'M&E Panel & Exhaust',   x: 92, w: 8,  ...B, color: 0x8b95a1, kind: 'me' },
+  { id: 'dock',   label: 'Loading Dock',           short: 'Loading',    x: 0,  w: 12, ...B, color: 0xb9c6d3, kind: 'dock', open: 'left' },
+  { id: 'waste',  label: 'Waste Management',       short: 'Waste',      x: 12, w: 8,  ...B, color: 0xb9c9ae, kind: 'waste' },
+  { id: 'dry',    label: 'Warm Dry Storage',       short: 'Dry Store',  x: 20, w: 12, ...B, color: 0xf0dcc0, kind: 'dry' },
+  { id: 'coldv',  label: 'Cold Storage · Veg',     short: 'Cold · Veg', x: 32, w: 10, ...B, color: 0xd6f0e1, accent: 0x6cc08b, kind: 'cold' },
+  { id: 'coldn',  label: 'Cold Storage · Non-Veg', short: 'Cold · Non-Veg', x: 42, w: 10, ...B, color: 0xf8d9d2, accent: 0xe8736a, kind: 'cold' },
+  { id: 'tandoor',label: 'Central Tandoor',        short: 'Tandoor',    x: 52, w: 12, ...B, color: 0xeaa664, kind: 'tandoor' },
+  { id: 'elec',   label: 'Electrical Appliances',  short: 'Appliances', x: 64, w: 14, ...B, color: 0xbfcddb, kind: 'elec' },
+  { id: 'bake',   label: 'Baking & Pastry',        short: 'Bakery',     x: 78, w: 14, ...B, color: 0xf6c4aa, kind: 'bake' },
+  { id: 'me',     label: 'M&E Panel & Exhaust',    short: 'M&E',        x: 92, w: 8,  ...B, color: 0xa3acb7, kind: 'me' },
 ];
